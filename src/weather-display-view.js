@@ -5,8 +5,8 @@ function generateWeatherDisplayDom(data) {
   weatherDisplay.id = "weather-display";
 
   // generate weather/location display
-  const weatherAndLocationContainer = document.createElement("div");
-  weatherAndLocationContainer.id = "container-weather-location-info";
+  const tempAndLocationContainer = document.createElement("div");
+  tempAndLocationContainer.id = "container-weather-location-info";
 
   const temperature = document.createElement("span");
   temperature.id = "temperature-display";
@@ -16,7 +16,7 @@ function generateWeatherDisplayDom(data) {
   location.id = "location-display";
   location.textContent = `${data.location.name}, ${data.location.region}, ${data.location.country}`;
 
-  weatherAndLocationContainer.append(temperature, location);
+  tempAndLocationContainer.append(temperature, location);
 
   // generate time and date info
   const timeAndDateContainer = document.createElement("div");
@@ -32,7 +32,7 @@ function generateWeatherDisplayDom(data) {
 
   timeAndDateContainer.append(time, date);
 
-  weatherDisplay.append(weatherAndLocationContainer, timeAndDateContainer);
+  weatherDisplay.append(tempAndLocationContainer, timeAndDateContainer);
 
   return weatherDisplay;
 }
