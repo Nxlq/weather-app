@@ -37,7 +37,9 @@ function generateWeatherDisplayDom(data) {
   return weatherDisplay;
 }
 
-export function renderWeatherDisplay(data) {
+function renderWeatherDisplay(data) {
   const appContent = document.getElementById("app-content");
   appContent.append(generateWeatherDisplayDom(data));
 }
+
+export default renderWeatherDisplay;

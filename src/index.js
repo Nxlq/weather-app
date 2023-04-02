@@ -1,5 +1,5 @@
 import fetchCurrentWeather from "./weather-data";
-import { renderWeatherDisplay } from "./weather-display-view";
+import renderWeatherDisplay from "./weather-display-view";
 
 window.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchCurrentWeather();
