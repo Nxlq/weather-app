@@ -10,6 +10,7 @@ function generateWeatherDisplayDom(data) {
   weatherIcon.src = `/weather-icons/${data.current.is_day ? "day" : "night"}/${
     data.formattedInfo.weatherIcon
   }`;
+  setWeatherBackgroundImage(data);
 
   // generate weather/location display
   const tempAndLocationContainer = document.createElement("div");
