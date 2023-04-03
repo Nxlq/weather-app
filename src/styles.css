@@ -434,6 +434,11 @@ h5 {
   flex-direction: column;
 }
 
+#weather-display-icon {
+  height: auto;
+  width: 8rem;
+}
+
 #temperature-display {
   color: white;
   font-size: var(--weather-display-bigfont);

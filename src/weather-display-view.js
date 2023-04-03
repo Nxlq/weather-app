@@ -4,6 +4,13 @@ function generateWeatherDisplayDom(data) {
   const weatherDisplay = document.createElement("div");
   weatherDisplay.id = "weather-display";
 
+  // generate icon for weather display
+  const weatherIcon = document.createElement("img");
+  weatherIcon.id = "weather-display-icon";
+  weatherIcon.src = `/weather-icons/${data.current.is_day ? "day" : "night"}/${
+    data.formattedInfo.weatherIcon
+  }`;
+
   // generate weather/location display
   const tempAndLocationContainer = document.createElement("div");
   tempAndLocationContainer.id = "container-weather-location-info";
@@ -16,7 +23,7 @@ function generateWeatherDisplayDom(data) {
   location.id = "location-display";
   location.textContent = `${data.location.name}, ${data.location.region}, ${data.location.country}`;
 
-  tempAndLocationContainer.append(temperature, location);
+  tempAndLocationContainer.append(weatherIcon, temperature, location);
 
   // generate time and date info
   const timeAndDateContainer = document.createElement("div");
