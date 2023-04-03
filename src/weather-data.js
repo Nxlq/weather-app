@@ -6,10 +6,7 @@ async function fetchCurrentWeather() {
   const currentData = await response.json();
 
   // add parsed info onto currentData object
-  currentData.formattedInfo = parseLocalTime(currentData.location.localtime);
-  currentData.formattedInfo.day = parseCurrentDayOfWeek(
-    currentData.location.localtime
-  );
+  currentData.formattedInfo = getFormattedInfo(currentData);
 
   console.log(currentData);
   return currentData;
@@ -58,4 +55,13 @@ function parseCurrentDayOfWeek(localTimeStr) {
   const currentDay = daysOfWeek[dayIndex];
 
   return currentDay;
+}
+
+function getFormattedInfo(currentData) {
+  const { monthAbbreviation, dayOfMonth, time } = parseLocalTime(
+    currentData.location.localtime
+  );
+  const day = parseCurrentDayOfWeek(currentData.location.localtime);
+
+  return { monthAbbreviation, dayOfMonth, time, day };
 }
