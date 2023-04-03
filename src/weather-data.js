@@ -57,11 +57,22 @@ function parseCurrentDayOfWeek(localTimeStr) {
   return currentDay;
 }
 
+function parseWeatherIcon(currentConditionObj) {
+  const iconAPILink = currentConditionObj.icon;
+  const weatherIcon = iconAPILink
+    .split("/")
+    .find((str) => str.includes(".png"));
+
+  return weatherIcon;
+}
+
+// this function calls all data parsing functions and returns a formatted info obj which is added to the api response obj when fetched
 function getFormattedInfo(currentData) {
   const { monthAbbreviation, dayOfMonth, time } = parseLocalTime(
     currentData.location.localtime
   );
   const day = parseCurrentDayOfWeek(currentData.location.localtime);
+  const weatherIcon = parseWeatherIcon(currentData.current.condition);
 
-  return { monthAbbreviation, dayOfMonth, time, day };
+  return { monthAbbreviation, dayOfMonth, time, day, weatherIcon };
 }
