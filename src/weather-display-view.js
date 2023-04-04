@@ -10,7 +10,6 @@ function generateWeatherDisplayDom(data) {
   weatherIcon.src = `/weather-icons/${data.current.is_day ? "day" : "night"}/${
     data.formattedInfo.weatherIcon
   }`;
-  setWeatherBackgroundImage(data);
 
   // generate weather/location display
   const tempAndLocationContainer = document.createElement("div");
@@ -48,6 +47,7 @@ function generateWeatherDisplayDom(data) {
 function renderWeatherDisplay(data) {
   const appContent = document.getElementById("app-content");
   appContent.append(generateWeatherDisplayDom(data));
+  setWeatherBackgroundImage(data);
 }
 
 function updateWeatherBG(url) {
@@ -56,7 +56,6 @@ function updateWeatherBG(url) {
 }
 
 function setWeatherBackgroundImage(data) {
-  const weatherDisplayEl = document.getElementById("weather-display");
   const curWeatherCode = data.current.condition.code;
   const sunnyCodes = [1000, 1003];
   const cloudyCodes = [1006, 1009, 1030, 1135, 1147];
