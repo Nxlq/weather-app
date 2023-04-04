@@ -416,6 +416,8 @@ h5 {
 
 #weather-display {
   color: white;
+  -webkit-text-stroke: 1.7px black;
+  font-weight: 700;
   background-color: var(--border-color);
   background-image: url("/images/pngtree-night-forest-mountain-cartoon-background-picture-image_1599402.jpg");
   background-repeat: no-repeat;
@@ -442,12 +444,12 @@ h5 {
 
 #temperature-display {
   font-size: var(--weather-display-bigfont);
-  font-weight: 100;
+  font-weight: 600;
 }
 
 #location-display {
   font-size: var(--weather-display-smallfont);
-  font-weight: 300;
+  /* font-weight: 500; */
 }
 
 #container-date-info {
@@ -458,9 +460,10 @@ h5 {
 #time-display {
   font-size: var(--weather-display-smallfont);
   align-self: flex-end;
+  /* font-weight: 600; */
 }
 
 #date-display {
   font-size: var(--weather-display-smallfont);
-  font-weight: 100;
+  /* font-weight: 500; */
 }
