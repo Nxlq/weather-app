@@ -55,7 +55,7 @@ function updateWeatherBG(url) {
   weatherDisplayEl.style.backgroundImage = url;
 }
 
-function setWeatherBackgroundImage(data) {
+async function setWeatherBackgroundImage(data) {
   const curWeatherCode = data.current.condition.code;
   const sunnyCodes = [1000, 1003];
   const cloudyCodes = [1006, 1009, 1030, 1135, 1147];
@@ -71,50 +71,56 @@ function setWeatherBackgroundImage(data) {
 
   // if it's night time
   if (!data.current.is_day) {
-    updateWeatherBG(
-      'url("/images/pngtree-night-forest-mountain-cartoon-background-picture-image_1599402.jpg")'
-    );
+    const gifURL = await fetchWeatherGif("nighttime");
+    updateWeatherBG(`url(${gifURL})`);
     return;
   }
+
   // if it's day time
 
   // IF SUNNY
   if (sunnyCodes.includes(curWeatherCode)) {
-    updateWeatherBG(
-      'url("/images/pngtree-cartoon-flat-forest-landscape-travel-banner-background-picture-image_1040481.jpg")'
-    );
+    const gifURL = await fetchWeatherGif("sunny");
+    updateWeatherBG(`url(${gifURL})`);
+
     return;
   }
 
   // IF CLOUDY
   if (cloudyCodes.includes(curWeatherCode)) {
-    updateWeatherBG(
-      'url("/images/pngtree-dark-sky-with-dark-clouds-and-realistic-clouds-background-picture-image_1178202.jpg")'
-    );
+    const gifURL = await fetchWeatherGif("cloudy");
+    updateWeatherBG(`url(${gifURL})`);
     return;
   }
 
   // IF RAINY
   if (rainyCodes.includes(curWeatherCode)) {
-    updateWeatherBG(
-      'url("/images/pngtree-people-work-on-rice-fields-in-rain-picture-image_1775117.jpg")'
-    );
+    const gifURL = await fetchWeatherGif("rainy");
+    updateWeatherBG(`url(${gifURL})`);
     return;
   }
 
   // IF SNOWY
   if (snowyCodes.includes(curWeatherCode)) {
-    updateWeatherBG(
-      'url("/images/pngtree-new-cute-snowy-cartoon-banner-on-new-clothing-in-winter-picture-image_1123861.jpg")'
-    );
+    const gifURL = await fetchWeatherGif("snowy");
+    updateWeatherBG(`url(${gifURL})`);
   }
 
   // IF STORMY
   if (stormyCodes.includes(curWeatherCode)) {
-    updateWeatherBG(
-      'url("/images/pngtree-blue-sky-and-white-clouds-weather-thunder-and-lightning-army-unity-picture-image_1118497.jpg")'
-    );
+    const gifURL = await fetch("storm");
+    updateWeatherBG(`url(${gifURL})`);
   }
+}
+
+export async function fetchWeatherGif(string) {
+  const response = await fetch(
+    `https://api.giphy.com/v1/gifs/translate?api_key=wbrSw8VyWBlLS4akOVt1qa9fZP9rXC40&s=${string}`,
+    { mode: "cors" }
+  );
+  const data = await response.json();
+  const gifURL = data.data.images.original.url;
+  return gifURL;
 }
 
 export default renderWeatherDisplay;
