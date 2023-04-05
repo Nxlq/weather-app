@@ -169,8 +169,53 @@ function renderWeatherDisplay(data) {
   appContent.append(generateWeatherDisplayDom(data));
 }
 
+function createTempChart(data) {
+  const ctx = document.getElementById("myChart");
+  const maxTempsArr = data.forecast.forecastday.map(
+    (day) => `${day.day.maxtemp_f}`
+  );
+  const minTempsArr = data.forecast.forecastday.map(
+    (day) => `${day.day.mintemp_f}`
+  );
+  const labelsArr = data.forecast.forecastday.map(
+    (day) =>
+      `${data.formattedInfo.monthAbbreviation} ${parseInt(
+        day.date.split("-")[2],
+        10
+      )}`
+  );
+  console.log(labelsArr);
+  console.log(maxTempsArr);
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labelsArr,
+      datasets: [
+        {
+          label: "Max Temp °F",
+          data: maxTempsArr,
+          borderWidth: 1,
+        },
+        {
+          label: "Min Temp °F",
+          data: minTempsArr,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
 export default function renderWeatherContents(data) {
   renderWeatherDisplay(data);
   setWeatherBackgroundImage(data);
   renderMiscWeatherStats(data);
+  createTempChart(data);
 }

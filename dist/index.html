@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/styles.css" />
-    <script src="main.js" defer></script>
+    <script src="main.js"></script>
     <title>Weather App</title>
   </head>
   <body>
@@ -54,6 +54,42 @@
           </div>
         </div>
       </div>
+      <div id="chart-container">
+        <canvas id="myChart"></canvas>
+      </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // async function createTempChart() {
+      //   const ctx = document.getElementById("myChart");
+
+      //   const response = await fetch(
+      //     `http://api.weatherapi.com/v1/forecast.json?key=9075e974d8924af5855180341233103&q=${11209}&days=7&aqi=no`,
+      //     { mode: "cors" }
+      //   );
+      //   const data = await response.json();
+
+      //   new Chart(ctx, {
+      //     type: "line",
+      //     data: {
+      //       labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      //       datasets: [
+      //         {
+      //           label: "Max Temps",
+      //           data: [12, 19, 3, 5, 2, 3],
+      //           borderWidth: 1,
+      //         },
+      //       ],
+      //     },
+      //     options: {
+      //       scales: {
+      //         y: {
+      //           beginAtZero: true,
+      //         },
+      //       },
+      //     },
+      //   });
+      // }
+    </script>
   </body>
 </html>
