@@ -1,16 +1,16 @@
 async function fetchCurrentWeather(locationQuery) {
   const response = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=9075e974d8924af5855180341233103&q=${locationQuery}&aqi=no`,
+    `http://api.weatherapi.com/v1/forecast.json?key=9075e974d8924af5855180341233103&q=${locationQuery}&days=7&aqi=no`,
     { mode: "cors" }
   );
 
-  const currentData = await response.json();
+  const data = await response.json();
 
-  // add parsed info onto currentData object
-  currentData.formattedInfo = getFormattedInfo(currentData);
+  // add parsed info onto data object
+  data.formattedInfo = getFormattedInfo(data);
 
-  console.log(currentData);
-  return currentData;
+  console.log(data);
+  return data;
 }
 
 export default fetchCurrentWeather;
@@ -68,12 +68,12 @@ function parseWeatherIcon(currentConditionObj) {
 }
 
 // this function calls all data parsing functions and returns a formatted info obj which is added to the api response obj when fetched
-function getFormattedInfo(currentData) {
+function getFormattedInfo(data) {
   const { monthAbbreviation, dayOfMonth, time } = parseLocalTime(
-    currentData.location.localtime
+    data.location.localtime
   );
-  const day = parseCurrentDayOfWeek(currentData.location.localtime);
-  const weatherIcon = parseWeatherIcon(currentData.current.condition);
+  const day = parseCurrentDayOfWeek(data.location.localtime);
+  const weatherIcon = parseWeatherIcon(data.current.condition);
 
   return { monthAbbreviation, dayOfMonth, time, day, weatherIcon };
 }

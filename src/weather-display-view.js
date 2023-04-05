@@ -39,7 +39,7 @@ async function setWeatherBackgroundImage(data) {
 
   // IF SUNNY
   if (sunnyCodes.includes(curWeatherCode)) {
-    const gifURL = await fetchWeatherGif("sunny");
+    const gifURL = await fetchWeatherGif("sun");
     updateWeatherBG(`url(${gifURL})`);
 
     return;
