@@ -164,9 +164,13 @@ function renderMiscWeatherStats(data) {
   generateAndRenderSunset(data);
 }
 
-export default function renderWeatherDisplay(data) {
+function renderWeatherDisplay(data) {
   const appContent = document.getElementById("app-content");
   appContent.append(generateWeatherDisplayDom(data));
+}
+
+export default function renderWeatherContents(data) {
+  renderWeatherDisplay(data);
   setWeatherBackgroundImage(data);
   renderMiscWeatherStats(data);
 }
