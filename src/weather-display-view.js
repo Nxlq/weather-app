@@ -117,8 +117,56 @@ function generateWeatherDisplayDom(data) {
   return weatherDisplay;
 }
 
+function generateAndRenderHumidity(data) {
+  const humidityStat = data.current.humidity;
+  const humidityTextContainer = document.getElementById("humidity-text");
+
+  const span = document.createElement("span");
+  span.textContent = `${humidityStat}%`;
+
+  humidityTextContainer.appendChild(span);
+}
+
+function generateAndRenderUvIndex(data) {
+  const uvIndex = data.current.uv;
+  const uvIndexTextContainer = document.getElementById("uv-index-text");
+
+  const span = document.createElement("span");
+  span.textContent = `${uvIndex} of 10`;
+
+  uvIndexTextContainer.appendChild(span);
+}
+
+function generateAndRenderSunrise(data) {
+  const sunriseStat = data.forecast.forecastday[0].astro.sunrise;
+  const sunriseTextContainer = document.getElementById("sunrise-text");
+
+  const span = document.createElement("span");
+  span.textContent = `${sunriseStat}`;
+
+  sunriseTextContainer.appendChild(span);
+}
+
+function generateAndRenderSunset(data) {
+  const sunsetStat = data.forecast.forecastday[0].astro.sunset;
+  const sunsetTextContainer = document.getElementById("sunset-text");
+
+  const span = document.createElement("span");
+  span.textContent = `${sunsetStat}`;
+
+  sunsetTextContainer.appendChild(span);
+}
+
+function renderMiscWeatherStats(data) {
+  generateAndRenderHumidity(data);
+  generateAndRenderUvIndex(data);
+  generateAndRenderSunrise(data);
+  generateAndRenderSunset(data);
+}
+
 export default function renderWeatherDisplay(data) {
   const appContent = document.getElementById("app-content");
   appContent.append(generateWeatherDisplayDom(data));
   setWeatherBackgroundImage(data);
+  renderMiscWeatherStats(data);
 }
