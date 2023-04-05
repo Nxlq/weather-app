@@ -127,6 +127,12 @@ function generateAndRenderHumidity(data) {
   const humidityStat = data.current.humidity;
   const humidityTextContainer = document.getElementById("humidity-text");
 
+  // if element already exists then just change the text content
+  if (humidityTextContainer.childElementCount === 2) {
+    humidityTextContainer.lastChild.textContent = `${humidityStat}%`;
+    return;
+  }
+
   const span = document.createElement("span");
   span.textContent = `${humidityStat}%`;
 
@@ -136,6 +142,12 @@ function generateAndRenderHumidity(data) {
 function generateAndRenderUvIndex(data) {
   const uvIndex = data.current.uv;
   const uvIndexTextContainer = document.getElementById("uv-index-text");
+
+  // if element already exists then just change the text content
+  if (uvIndexTextContainer.childElementCount === 2) {
+    uvIndexTextContainer.lastChild.textContent = `${uvIndex} of 10`;
+    return;
+  }
 
   const span = document.createElement("span");
   span.textContent = `${uvIndex} of 10`;
@@ -147,6 +159,12 @@ function generateAndRenderSunrise(data) {
   const sunriseStat = data.forecast.forecastday[0].astro.sunrise;
   const sunriseTextContainer = document.getElementById("sunrise-text");
 
+  // if element already exists then just change the text content
+  if (sunriseTextContainer.childElementCount === 2) {
+    sunriseTextContainer.lastChild.textContent = `${sunriseStat}`;
+    return;
+  }
+
   const span = document.createElement("span");
   span.textContent = `${sunriseStat}`;
 
@@ -156,6 +174,12 @@ function generateAndRenderSunrise(data) {
 function generateAndRenderSunset(data) {
   const sunsetStat = data.forecast.forecastday[0].astro.sunset;
   const sunsetTextContainer = document.getElementById("sunset-text");
+
+  // if element already exists then just change the text content
+  if (sunsetTextContainer.childElementCount === 2) {
+    sunsetTextContainer.lastChild.textContent = `${sunsetStat}`;
+    return;
+  }
 
   const span = document.createElement("span");
   span.textContent = `${sunsetStat}`;
