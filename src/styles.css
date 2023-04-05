@@ -372,6 +372,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #121212;
+  color: white;
 }
 
 h1,
@@ -437,6 +438,7 @@ h5 {
   border-radius: 10px;
   grid-area: 2 / 1 / 3 / 3;
   padding: 40px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -476,4 +478,39 @@ h5 {
 #date-display {
   font-size: var(--weather-display-smallfont);
   /* font-weight: 500; */
+}
+
+/* ------- Misc Weather Display ------- */
+#misc-weather-stats-container {
+  background-color: var(--background-color);
+  grid-area: 3 / 1 / 4 / 2;
+  font-size: 1.1rem;
+  height: 300px;
+  width: 600px;
+  border: solid 1px var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#misc-weather-stats-container > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+#misc-weather-stats-container img {
+  height: 3rem;
+}
+
+#sunrise-container {
+  grid-area: 2 / 2 / 3 / 3;
+  border-left: var(--border-color);
+}
+
+#sunset-container {
+  grid-area: 1 / 2 / 2 / 3;
+  border-left: var(--border-color);
 }
