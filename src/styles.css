@@ -393,7 +393,7 @@ h5 {
   );
   width: 70%;
   padding: 40px 80px;
-  border: solid 4px var(--border-color);
+  border: solid 3px var(--border-color);
   border-radius: 10px;
   display: grid;
   grid-template: 1fr 5fr 5fr / 1fr 2fr;
