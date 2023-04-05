@@ -353,9 +353,12 @@ template {
 
 :root {
   box-sizing: border-box;
-  --border-color: rgb(199, 201, 243);
-  --background-color: rgb(249, 247, 255);
-  --logo-color: rgb(125, 131, 232);
+  --border-color: #865dff;
+  /* --border-color: rgb(199, 201, 243); */
+  --background-color: #191825;
+  /* --background-color: rgb(249, 247, 255); */
+  --logo-color: #ffa3fd;
+  /* --logo-color: rgb(125, 131, 232); */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --weather-display-bigfont: 7.5rem;
@@ -368,6 +371,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #121212;
 }
 
 h1,
@@ -380,7 +384,12 @@ h5 {
 }
 
 #app-content {
-  background-color: var(--background-color);
+  background: rgb(16, 16, 24);
+  background: radial-gradient(
+    circle,
+    rgba(16, 16, 24, 1) 52%,
+    rgba(9, 9, 14, 1) 100%
+  );
   width: 70%;
   padding: 40px 80px;
   border: solid 4px var(--border-color);
