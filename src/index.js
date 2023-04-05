@@ -1,6 +1,5 @@
 import fetchCurrentWeather from "./weather-data";
-import renderWeatherDisplay, { fetchWeatherBG } from "./weather-display-view";
-import { renderWeatherDisplay } from "./weather-display-view";
+import renderWeatherDisplay from "./weather-display-view";
 
 async function locationReqSuccess(position) {
   const { latitude, longitude } = position.coords;

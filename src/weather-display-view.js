@@ -1,4 +1,4 @@
-export async function fetchWeatherGif(string) {
+async function fetchWeatherGif(string) {
   const response = await fetch(
     `https://api.giphy.com/v1/gifs/translate?api_key=wbrSw8VyWBlLS4akOVt1qa9fZP9rXC40&s=${string}`,
     { mode: "cors" }
@@ -117,7 +117,7 @@ function generateWeatherDisplayDom(data) {
   return weatherDisplay;
 }
 
-export function renderWeatherDisplay(data) {
+export default function renderWeatherDisplay(data) {
   const appContent = document.getElementById("app-content");
   appContent.append(generateWeatherDisplayDom(data));
   setWeatherBackgroundImage(data);
