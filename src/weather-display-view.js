@@ -14,6 +14,7 @@ function updateWeatherBG(url) {
 }
 
 async function setWeatherBackgroundImage(data) {
+  console.log({ data });
   const curWeatherCode = data.current.condition.code;
   const sunnyCodes = [1000, 1003];
   const cloudyCodes = [1006, 1009, 1030, 1135, 1147];
@@ -72,6 +73,11 @@ async function setWeatherBackgroundImage(data) {
 }
 
 function generateWeatherDisplayDom(data) {
+  const weatherDisplayCur = document.getElementById("weather-display");
+  // check if there is a current weather display, remove if so before generating a new one
+  if (weatherDisplayCur) {
+    weatherDisplayCur.remove();
+  }
   console.log(data);
   // generate weather display container
   const weatherDisplay = document.createElement("div");
@@ -170,7 +176,17 @@ function renderWeatherDisplay(data) {
 }
 
 function createTempChart(data) {
-  const ctx = document.getElementById("myChart");
+  const chartContainer = document.getElementById("chart-container");
+
+  // if a chart already exists then remove it first
+  if (chartContainer.hasChildNodes) {
+    chartContainer.removeChild(chartContainer.firstElementChild);
+  }
+
+  const ctx = document.createElement("canvas");
+  ctx.id = "myChart";
+  chartContainer.appendChild(ctx);
+
   const maxTempsArr = data.forecast.forecastday.map(
     (day) => `${day.day.maxtemp_f}`
   );
@@ -184,8 +200,8 @@ function createTempChart(data) {
         10
       )}`
   );
-  console.log(labelsArr);
-  console.log(maxTempsArr);
+
+  // generate/render chart
   new Chart(ctx, {
     type: "bar",
     data: {
@@ -204,9 +220,11 @@ function createTempChart(data) {
       ],
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+      plugins: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
         },
       },
     },
@@ -215,7 +233,7 @@ function createTempChart(data) {
 
 export default function renderWeatherContents(data) {
   renderWeatherDisplay(data);
-  setWeatherBackgroundImage(data);
   renderMiscWeatherStats(data);
   createTempChart(data);
+  setWeatherBackgroundImage(data);
 }

@@ -1,12 +1,14 @@
 import fetchCurrentWeather from "./weather-data";
 import renderWeatherContents from "./weather-display-view";
 
+const searchBar = document.getElementById("search-location-input");
+
 async function locationReqSuccess(position) {
   const { latitude, longitude } = position.coords;
-  const currentData = await fetchCurrentWeather(`${latitude},${longitude}`);
+  const data = await fetchCurrentWeather(`${latitude},${longitude}`);
 
-  renderWeatherContents(currentData);
-  return currentData;
+  renderWeatherContents(data);
+  return data;
   // return `${latitude},${longitude}`;
 }
 
@@ -19,4 +21,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     locationReqSuccess,
     locationReqFailed
   );
+});
+
+searchBar.addEventListener("keyup", async (e) => {
+  if (e.code.toLowerCase() === "enter") {
+    const data = await fetchCurrentWeather(searchBar.value);
+    console.log(data);
+    renderWeatherContents(data);
+  }
 });
