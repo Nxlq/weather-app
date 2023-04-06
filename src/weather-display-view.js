@@ -86,7 +86,7 @@ function generateWeatherDisplayDom(data) {
   // generate icon for weather display
   const weatherIcon = document.createElement("img");
   weatherIcon.id = "weather-display-icon";
-  weatherIcon.src = `/weather-icons/${data.current.is_day ? "day" : "night"}/${
+  weatherIcon.src = `weather-icons/${data.current.is_day ? "day" : "night"}/${
     data.formattedInfo.weatherIcon
   }`;
 
